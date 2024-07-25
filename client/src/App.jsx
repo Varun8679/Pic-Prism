@@ -9,8 +9,9 @@ import Navbar from "./componenets/Navbar";
 function App() {
   return (
     <>
-    <Navbar/>
-      <BrowserRouter>
+    
+    <Navbar/>   
+      
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
@@ -18,7 +19,7 @@ function App() {
           <Route path="/seller/profile" element={<SellerDashboard />} />
           <Route path="/buyer/profile" element={<BuyerDashboard />} />
         </Routes>
-      </BrowserRouter>
+      
     </>
   );
 }

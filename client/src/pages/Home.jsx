@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import HeroSection from "../componenets/HeroSection";
 
 function Home() {
   return (
-    <div>Home</div>
-  )
+    <div className="mt-36">
+    <HeroSection/>
+    </div>
+  );
 }
 
-export default Home
+export default Home;
