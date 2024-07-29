@@ -1,12 +1,13 @@
 // 4 steps procedure to make server
 // Express ko bulana hoga is file me
 const express = require("express");
-const dotenv = require("dotenv");
+const dotenv = require("dotenv"); 
 const { readdirSync } = require("fs");
+const { connectDb } = require("./connection");
+const cors = require("cors");
 
 //import route here
-const authRoutes = require("./routes/authRoutes");
-const { connectDb } = require("./connection");
+// const authRoutes = require("./routes/authRoutes");
 
 //Binding this env
 dotenv.config();
@@ -16,6 +17,8 @@ const app = express();
 const port = process.env.PORT || 5000;
 connectDb();
 //Making Routes
+app.use(cors());
+app.use(express.json());
 app.get("/", (req, res) => {
   res.send("<center><h1>Server Running Dudes...</h1></center>");
 });
