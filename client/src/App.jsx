@@ -1,14 +1,16 @@
 import Navbar from "./componenets/Navbar";
 import GsapTransition from "./componenets/GsapTransition";
+import { Provider } from "react-redux";
+import { store } from "../store/store";
 
 function App() {
   return (
     <>
-    
-    <Navbar/>   
-      
-        <GsapTransition/>
-      
+      <Provider store={store}>
+        <Navbar />
+
+        <GsapTransition />
+      </Provider>
     </>
   );
 }

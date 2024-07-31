@@ -55,7 +55,7 @@ const Signup = () => {
               required
               onChange={(e) => setUsername(e.target.value)}
               value={username}
-              placeholder="coder29"
+              placeholder="Varun"
               className="shadow-md rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-black focus:border-black"
             />
           </div>
