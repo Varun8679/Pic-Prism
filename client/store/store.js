@@ -7,6 +7,6 @@ export const store = configureStore({
     "Key to identify slice ": "slice file",
     // shakkar: shakkarSlice,
     auth: authSlice,
-    nav:navSlice
+    nav: navSlice,
   },
 });

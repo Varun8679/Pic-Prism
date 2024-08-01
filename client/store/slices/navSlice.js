@@ -9,7 +9,7 @@ const navSlice = createSlice({
   },
 
   reducers: {
-    toggleSideBar: (state) => {
+    toggleSidebar: (state) => {
       state.sidebar = !state.sidebar;
     },
     setTab: (state, action) => {
@@ -17,5 +17,6 @@ const navSlice = createSlice({
     },
   },
 });
-export const { toggleSideBar, setTab } = navSlice.actions;
+
+export const { toggleSidebar, setTab } = navSlice.actions;
 export default navSlice.reducer;
