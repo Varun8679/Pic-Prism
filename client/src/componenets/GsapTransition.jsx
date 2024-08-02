@@ -1,53 +1,59 @@
-import React, { useEffect, useRef } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
+import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import SellerDashboard from "../pages/SellerDashboard";
 import BuyerDashboard from "../pages/BuyerDashboard";
-import Home from "../pages/Home";
 import gsap from "gsap";
+import { useEffect, useRef } from "react";
 import { Toaster } from "react-hot-toast";
+import ProtectedRoute from "./ProtectedRoute";
 
-function GsapTransition() {
-  const nodref = useRef(null);
+const GsapTransition = () => {
+  const nodeRef = useRef(null);
   const location = useLocation();
-  console.log("The location is :", location);
+  console.log("The location is : ", location);
 
-  // jab bhi hum location change hoga tab ye use effect run hoga, because ye useEffect hook ko hum dependent banane walehai location ke upar
+  //   Jab bhi location change hoga tab ye use effect run hoga, because ye useEffect hook ko ham depenedent banane wale hai locaiton ke upper
 
-  // when a page renders, useEffects runs first
-
+  //   When a page renders, useEffects runs first
   useEffect(() => {
-    if (nodref.current) {
-      gsap.fromTo(
-        nodref.current,
-        0.5,
-        { opacity: 0 },
-        { opacity: 1, duration: 1 }
-      );
-      // gsap.fromTo() is used to animate from one state to another. Here, we animate the opacity from 0 to 1 over a duration of 0.5 seconds.
-
-      // for smooth transition, we can use "ease" easing function as well.
+    if (nodeRef.current) {
+      gsap.fromTo(nodeRef.current, { opacity: 0 }, { opacity: 1, duration: 1 });
     }
   }, [location]);
-  // when we keep dependency array empty it means that: bhai ye page call hoga jab bhi tum refresh karoge
+  //   When we keep dependecny array empy it means that : bhai ye page call hoga jab bhi tum refresh karoge
 
-  //for Gsap:
-  // (1)target
-  // (2) logic
+  //   For GSAP :
+  //  1) target
+  //  2) logic
 
   return (
-    <div ref={nodref}>
+    <div ref={nodeRef}>
       <Toaster />
-      <Routes>
+      <Routes location={location}>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/seller/profile" element={<SellerDashboard />} />
-        <Route path="/buyer/profile" element={<BuyerDashboard />} />
+        <Route
+          path="/login"
+          element={<ProtectedRoute children={<Login />} requiresAuth={false} />}
+        />
+        <Route
+          path="/signup"
+          element={
+            <ProtectedRoute children={<Signup />} requiresAuth={false} />
+          }
+        />
+        <Route
+          path="/seller/profile"
+          element={<ProtectedRoute children={<SellerDashboard />} />}
+        />
+        <Route
+          path="/buyer/profile"
+          element={<ProtectedRoute children={<BuyerDashboard />} />}
+        />
       </Routes>
     </div>
   );
-}
+};
 
 export default GsapTransition;
